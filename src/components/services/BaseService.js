@@ -1,6 +1,7 @@
 import axios from 'axios'
 import CONFIG from './config'
 
+axios.defaults.withCredentials = true
 /**
  * 获取首页banner图
  * */

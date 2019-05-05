@@ -23,7 +23,7 @@
         <div class="title">服务项目</div>
         <div class="services-img">
           <div class="card cursor" v-for="(item, index) in projects" :key="index" @click="$router.push('/project/' + item.id)">
-            <img class="card-img-top" src="../images/service.png">
+            <img class="card-img-top" :src="item.imageUrl">
             <div class="card-body">
               <h5 class="card-title">甲醛检测</h5>
             </div>
@@ -45,7 +45,7 @@
             <div class="item-wrap">
               <img src="../images/email.png">
               <span class="text">公司邮箱</span>:
-              <span class="text-wrap">{{contact.emile}}</span>
+              <span class="text-wrap">{{contact.email}}</span>
             </div>
             <div class="item-wrap">
               <img src="../images/fax.png">
@@ -74,7 +74,7 @@
               <span class="news-icon"></span>
               <div class="news-text">
                 <span class="ext">{{item.title}}</span>
-                 <span class="news-time">2019-05-01</span>
+                 <span class="news-time">{{item.time}}</span>
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@
         <div class="title">工程案例</div>
         <div class="services-img">
           <div class="card contact" v-for="(item, index) in cases" :key="index" @click="$router.push('/case/' + item.id)">
-            <img class="card-img-top" src="../images/service.png">
+            <img class="card-img-top" :src="item.imageUrl">
             <div class="card-body">
               <h5 class="card-title">甲醛检测</h5>
             </div>
@@ -110,7 +110,7 @@ export default {
       active: 0,
       contact: {
         hotline: '18862142956',
-        emile: '875889022@qq.com',
+        email: '875889022@qq.com',
         fax: '010-52486932',
         address: '工业园区独墅湖启月街1号'
       }, // 联系我们
@@ -120,8 +120,8 @@ export default {
     }
   },
   mounted () {
-    // this.getBannerInfo()
-    // this.getContact()
+    this.getBannerInfo()
+    this.getContact()
     this.getNewsInfo()
     this.getProjectInfo()
     this.getCaseInfo()
@@ -162,7 +162,6 @@ export default {
     getCaseInfo () {
       BaseService.getEngineerInfo()
         .then(res => {
-          console.log(res.data)
           if (res.data.data.length > 5) {
             this.cases = res.data.data.slice(0, 5)
           } else {

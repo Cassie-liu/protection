@@ -1,7 +1,8 @@
 <template>
   <div class="container case">
     <div class="item-wrap" v-for="(item, index) in Cases" :key="index" @click="$router.push('/case/' + item.id)">
-      <img src="../images/service.png" alt="">
+      <img :src="item.imageUrl" alt="">
+      <div class="title">{{item.title}}</div>
     </div>
   </div>
 </template>
@@ -22,7 +23,6 @@ export default {
     getEngineerInfo () {
       BaseService.getEngineerInfo()
         .then(res => {
-          console.log(res.data)
           if (res.data.resultCode === 200) {
             this.Cases = res.data.data
           }
@@ -45,5 +45,10 @@ export default {
   .item-wrap img{
     width:200px;
     height:200px;
+  }
+  .item-wrap .title{
+    text-align: center;
+    font-size:21px;
+    margin-top:10px;
   }
 </style>

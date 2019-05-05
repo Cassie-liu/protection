@@ -2,7 +2,7 @@
 <div class="container">
   <div class="item-wrap" v-for="(item, index) in news" :key="index" @click="$router.push('/news/' + item.id)">
     <div class="title"><a>{{item.title}}</a></div>
-    <div class="time">2019-04-26</div>
+    <div class="time">{{item.time}}</div>
   </div>
   <div class="pages mt-3">
     <b-pagination  v-model="params.page" :total-rows="totalCount" align="right" :per-page="params.size" @change="query"></b-pagination>
@@ -22,27 +22,31 @@ export default {
         page: 1,
         size: 10
       },
-      news: []
+      news: [],
+      allNews: []
     }
   },
   components: {
   },
   mounted () {
-    this.query(1)
+    this.queryAllNews(1)
   },
   methods: {
+    queryAllNews () {
+      BaseService.getNewsInfo()
+        .then(res => {
+          if (res.data.resultCode === 200) {
+            this.allNews = res.data.data
+            this.totalCount = this.allNews.length
+            this.query(1)
+          }
+        })
+    },
     query (pageNum) {
       if (pageNum) {
         this.params.page = pageNum
       }
-      this.totalCount = 100
-      this.totalPages = 1
-      BaseService.getNewsInfo()
-        .then(res => {
-          if (res.data.resultCode === 200) {
-            this.news = res.data.data
-          }
-        })
+      this.news = this.allNews.slice((this.params.page - 1) * 10, this.params.page * 10)
     }
   }
 }
@@ -58,4 +62,7 @@ export default {
   line-height: 30px;
   cursor: pointer;
 }
+  .pages.mt-3{
+    margin-top: 3rem !important;
+  }
 </style>

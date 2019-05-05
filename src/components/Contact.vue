@@ -2,7 +2,12 @@
   <div class="container">
     <div class="contact">
       <div class="maps">
-        <baidu-map class="map" :center="center" :zoom="zoom" @ready="handler"></baidu-map>
+        <baidu-map class="map" :center="center" :zoom="zoom" @ready="handler">
+          <bm-marker :position="center" :dragging="true" animation="BMAP_ANIMATION_BOUNCE">
+            <bm-label content="" :labelStyle="{color: 'red', fontSize : '24px'}" :offset="{width: -35, height: 30}"/>
+          </bm-marker>
+          <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
+        </baidu-map>
       </div>
       <div class="right">
         <div class="item-wrap">
@@ -18,7 +23,7 @@
         <div class="item-wrap">
           <img src="../images/email.png">
           <label class="text">公司邮箱</label>:
-          <span class="text-wrap">{{contact.emile}}</span>
+          <span class="text-wrap">{{contact.email}}</span>
         </div>
         <div class="item-wrap">
           <img src="../images/location.png">
@@ -43,20 +48,13 @@ export default {
         lat: 0
       }, // 经纬度
       zoom: 3, // 地图展示级别
-      contact: {
-        hotline: '18862142956',
-        emile: '875889022@qq.com',
-        fax: '010-52486932',
-        address: '工业园区独墅湖启月街1号',
-        longitude: 116.404,
-        latitude: 39.915
-      }
+      contact: {}
     }
   },
   components: {
     BaiduMap
   },
-  mounted () {
+  created () {
     this.getContactInfo()
   },
   methods: {
@@ -64,8 +62,8 @@ export default {
       BaseService.getContactInfo()
         .then(res => {
           this.contact = res.data.data
-          this.center.lng = this.contact.longitude
-          this.center.lat = this.contact.latitude
+          this.center.lng = Number(this.contact.longitude)
+          this.center.lat = Number(this.contact.latitude)
         })
     },
     handler ({BMap, map}) {
