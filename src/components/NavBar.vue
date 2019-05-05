@@ -38,11 +38,24 @@ export default {
   },
   methods: {
     initTab (path) {
-      this.tab = path.slice(path.indexOf('/') + 1)
-      console.log(this.tab)
+      var positions = this.searchSubStr(this.$route.path, '/')
+      if (positions.length > 0 && positions.length === 1) {
+        this.tab = path.slice(positions[0] + 1)
+      } else {
+        this.tab = path.slice(positions[0] + 1, positions[positions.length - 1])
+      }
     },
     switchTab (tab) {
       this.tab = tab
+    },
+    searchSubStr (str, subStr) {
+      var positions = []
+      var pos = str.indexOf(subStr)
+      while (pos > -1) {
+        positions.push(pos)
+        pos = str.indexOf(subStr, pos + 1)
+      }
+      return positions
     }
   },
   watch: {
