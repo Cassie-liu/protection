@@ -25,7 +25,7 @@
           <div class="card cursor" v-for="(item, index) in projects" :key="index" @click="$router.push('/project/' + item.id)">
             <img class="card-img-top" :src="item.imageUrl">
             <div class="card-body">
-              <h5 class="card-title">甲醛检测</h5>
+              <h5 class="card-title">{{item.title}}</h5>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
             <div class="item-wrap cursor" v-for="(item, index) in news" :key="index" @click="$router.push('/news/' + item.id)">
               <span class="news-icon"></span>
               <div class="news-text">
-                <span class="ext">{{item.title}}</span>
+                <span class="text new-title ellipsis">{{item.title}}</span>
                  <span class="news-time">{{item.time}}</span>
               </div>
             </div>
@@ -101,19 +101,9 @@ export default {
   name: 'Home',
   data () {
     return {
-      images: [
-        'https://picsum.photos/1024/480/?image=10',
-        'https://picsum.photos/1024/480/?image=12',
-        'https://picsum.photos/1024/480/?image=22',
-        'https://picsum.photos/1024/480/?image=23'
-      ], // 轮播图
+      images: [], // 轮播图
       active: 0,
-      contact: {
-        hotline: '18862142956',
-        email: '875889022@qq.com',
-        fax: '010-52486932',
-        address: '工业园区独墅湖启月街1号'
-      }, // 联系我们
+      contact: {}, // 联系我们
       news: [], // 新闻资讯
       projects: [], // 项目
       cases: [] // 工程
@@ -315,6 +305,10 @@ export default {
   .contact-news .news .content .item-wrap .news-text{
     display: flex;
     justify-content: space-between;
-    width: 99%;
+    width: 95%;
   }
+  .contact-news .news .content .item-wrap .news-text .new-title{
+    width: 56%;
+  }
+  .ellipsis { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; letter-spacing:1px; }
 </style>
