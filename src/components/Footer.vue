@@ -40,7 +40,7 @@ export default {
 }
 .nav-tab{
   list-style: none;
-  font-size:21px;
+  /*font-size:21px;*/
   display: flex;
   align-items: center;
   height: 60px;
@@ -52,5 +52,6 @@ export default {
   .nav-tab li a {
     color:#000;
     text-decoration: none;
+    font-size: 14px;
   }
 </style>

@@ -1,97 +1,121 @@
 <template>
   <div>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" v-for="(item, index) in images" :key="index" :data-slide-to="index" :class="active == index ? 'active': ''"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item" v-for="(item, index) in images" :key="index" :class="active == index ? 'active': ''">
-          <img class="d-block w-100" :src="item">
+    <section id="intro">
+      <div class="intro-container">
+        <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" v-for="(item, index) in images" :key="index" :data-slide-to="index" :class="active == index ? 'active': ''"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item" v-for="(item, index) in images" :key="index" :class="active == index ? 'active': ''" :style="{backgroundImage: 'url(' + item + ')'}">
+              <!--<img class="d-block w-100" :src="item">-->
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <img src="../images/button_left.png" alt="">
+            <!--<span class="carousel-control-prev-icon ion-chevron-left"></span>-->
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <img src="../images/button_right.png" alt="">
+            <!--<span class="carousel-control-next-icon ion-chevron-right"></span>-->
+            <span class="sr-only">Next</span>
+          </a>
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <img src="../images/button_left.png" alt="">
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <img src="../images/button_right.png" alt="">
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <div class="container">
-      <div class="services">
-        <div class="title">服务项目</div>
-        <div class="services-img">
-          <div class="card cursor" v-for="(item, index) in projects" :key="index" @click="$router.push('/project/' + item.id)">
-            <img class="card-img-top" :src="item.imageUrl">
-            <div class="card-body">
-              <h5 class="card-title">{{item.title}}</h5>
+    </section>
+    <main id="main">
+      <section id="advance">
+        <div class="title center">
+          <img src="../images/advantage.png" alt="">
+        </div>
+        <div class="content"></div>
+      </section>
+      <section id="company">
+        <div class="title center">
+          <img src="../images/company_intro.png" alt="">
+        </div>
+        <div class="content">
+          <div class="img img1">
+            <img src="../images/company1.jpg" alt="">
+          </div>
+          <div class="img img2">
+            <img src="../images/company2.jpg" alt="">
+          </div>
+          <div class="img introduce">
+            <div class="">
+              <p>
+                常州环泰环保科技有限公司，成立于2018年6月，公司为中小企业绿色创新服务平台立足于常州、面向全国、放眼世界，借助科技、文化和人才聚集优势，结合中小企业实际需求，利用互联网+专业服务的模式，搭建中小企业绿色发展与创新一站式服务平台。
+              </p>
+              <p>
+                环泰管家平台积极响应政府提出大众创业万众创新、产业结构调整、高精尖产业发展和绿色创新、一体化协同能力提升，提供重要服务支撑。公司拥有环保部颁发的环保设施运营管理（工业废水）甲级资质以及相关污水处理的多项国家级资质。
+              </p>
+              <p>
+                公司成立以来专业从事废水处理工程的设计、施工、运营管理以及污水处理设备的设计、制造。业务以涉及粉尘处理、活性炭吸附设备、填料塔吸收设备、低温等离子设备、生物滴滤设备、UV光解废气净化和催化燃烧设备等各种废气、粉尘净化处理技术。公司拥有一批具有丰富经验的工程师领衔设计，提供从技术咨询到设计、安装、调试、验收等一条龙服务，彻底解决客户的后顾之忧
+              </p>
             </div>
           </div>
         </div>
-      </div>
-      <div class="contact-news">
-        <div class="contact">
-          <div class="title">
-            <span class="title-wrap"></span>
-            <span class="title-text">联系我们</span>
-          </div>
+      </section>
+      <section id="project">
+        <div class="center">
+          <span class="case" :class="tab === 'case' ? 'active': ''" @click="switchTab('case')"></span>
+          <span class="project" :class="tab === 'project' ? 'active': ''" @click="switchTab('project')"></span>
+        </div>
+        <div class="case-project" v-if="tab === 'case'">
           <div class="content">
-            <div class="item-wrap">
-              <img src="../images/phone.png">
-              <span class="text">服务热线</span>:
-              <span class="text-wrap">{{contact.hotline}}</span>
-            </div>
-            <div class="item-wrap">
-              <img src="../images/email.png">
-              <span class="text">公司邮箱</span>:
-              <span class="text-wrap">{{contact.email}}</span>
-            </div>
-            <div class="item-wrap">
-              <img src="../images/fax.png">
-              <span class="text">传真</span>:
-              <span class="text-wrap">{{contact.fax}}</span>
-            </div>
-            <div class="item-wrap">
-              <img src="../images/location.png">
-              <span class="text">公司地址</span>:
-              <span class="text-wrap">{{contact.address}}</span>
-            </div>
+           <router-link :to="{name: 'Case'}">
+             <article v-for="(item, index) in cases" :key="index"  class="post-152 post type-post status-publish format-standard hentry category-people category-photos">
+               <div class="post-format-content">
+                 <div class="post-thumbnail">
+                   <img width="480" height="640" :src="item.imageUrl" class="attachment-thumbnail wp-post-image" alt="105694702">
+                 </div>
+                 <div class="content-wrap">
+                   <h1 class="entry-title">
+                     <a href="" class="featured-image" rel="bookmark">{{item.title}}</a>
+                   </h1>
+                 </div>
+               </div>
+             </article>
+           </router-link>
           </div>
         </div>
-        <div class="news">
-         <div class="news-title">
-           <div class="title">
-             <span class="title-wrap"></span>
-             <span class="title-text">新闻资讯</span>
-           </div>
-           <div class="more">
-             <router-link :to="{name: 'News'}">查看更多> ></router-link>
-           </div>
-         </div>
+        <div class="case-project" v-if="tab === 'project'">
           <div class="content">
-            <div class="item-wrap cursor" v-for="(item, index) in news" :key="index" @click="$router.push('/news/' + item.id)">
-              <span class="news-icon"></span>
-              <div class="news-text">
-                <span class="text new-title ellipsis">{{item.title}}</span>
-                 <span class="news-time">{{item.time}}</span>
-              </div>
-            </div>
+            <router-link :to="{name: 'Project'}">
+              <article v-for="(item, index) in projects" :key="index" @click="$router.push({name: 'Project'})" class="post-152 post type-post status-publish format-standard hentry category-people category-photos">
+                <div class="post-format-content">
+                  <div class="post-thumbnail">
+                    <img  :src="item.imageUrl" class="attachment-thumbnail wp-post-image" alt="105694702">
+                  </div>
+                  <div class="content-wrap">
+                    <h1 class="entry-title">
+                      <a href="" class="featured-image" rel="bookmark">{{item.title}}</a>
+                    </h1>
+                  </div>
+                </div>
+              </article>
+            </router-link>
           </div>
         </div>
-      </div>
-      <div class="services">
-        <div class="title">工程案例</div>
-        <div class="services-img">
-          <div class="card contact" v-for="(item, index) in cases" :key="index" @click="$router.push('/case/' + item.id)">
-            <img class="card-img-top" :src="item.imageUrl">
-            <div class="card-body">
-              <h5 class="card-title">甲醛检测</h5>
+      </section>
+      <section id="contact">
+          <div class="contact_us">
+            <div class="phone">
+              <img src="../images/phone-square.png" alt="">
+              <span class="text">{{contact.hotline}}</span>
+            </div>
+            <div class="phone">
+              <img src="../images/email-streamline.png" alt="">
+              <span class="text">{{contact.email}}</span>
+            </div>
+            <div class="phone">
+              <img src="../images/locations.png" alt="">
+              <span class="text">{{contact.address}}</span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
   </div>
 </template>
 
@@ -106,7 +130,8 @@ export default {
       contact: {}, // 联系我们
       news: [], // 新闻资讯
       projects: [], // 项目
-      cases: [] // 工程
+      cases: [], // 工程,
+      tab: 'case'
     }
   },
   mounted () {
@@ -117,6 +142,12 @@ export default {
     this.getCaseInfo()
   },
   methods: {
+    switchTab (tab) {
+      this.tab = tab
+    },
+    directToPath (path) {
+      this.$router.push({path: path})
+    },
     getBannerInfo () {
       BaseService.getBannerInfo()
         .then(res => {
@@ -132,21 +163,13 @@ export default {
     getNewsInfo () {
       BaseService.getNewsInfo()
         .then(res => {
-          if (res.data.data.length > 4) {
-            this.news = res.data.data.slice(0, 4)
-          } else {
-            this.news = res.data.data
-          }
+          this.news = res.data.data
         })
     },
     getProjectInfo () {
       BaseService.getProjectInfo()
         .then(res => {
-          if (res.data.data.length > 5) {
-            this.projects = res.data.data.slice(0, 5)
-          } else {
-            this.projects = res.data.data
-          }
+          this.projects = res.data.data
         })
     },
     getCaseInfo () {
@@ -168,14 +191,14 @@ export default {
     height: 450px;
   }
   .carousel-control-prev{
-    margin-left:350px;
+    margin-left:100px;
     text-align: left;
     width: auto;
     /*display: none;*/
     opacity: 0;
   }
   .carousel-control-next{
-    margin-right:350px;
+    margin-right:100px;
     text-align: right;
     width: auto;
     opacity: 0;
@@ -184,131 +207,218 @@ export default {
     /*display: inline-block;*/
     opacity: 1;
   }
+  #carouselExampleIndicators .carousel-item {
+    width: 100%;
+    height: -moz-calc(100vh - 90px);
+    height: -webkit-calc(100vh - 90px);
+    height: calc(100vh - 90px);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
   .carousel-indicators li{
-    width:20px;
-    height:10px;
-    border-radius: 5px;
-    background-color: #fff;
-    background-clip: padding-box;
-    border-top: none;
-    border-bottom: none;
+    /*width:20px;*/
+    /*height:10px;*/
+    /*border-radius: 5px;*/
+    /*background-color: #fff;*/
+    /*background-clip: padding-box;*/
+    /*border-top: none;*/
+    /*border-bottom: none;*/
   }
-  .carousel-indicators li.active{
-    width:25px;
-    background-color: #41903B;
-  }
-  .container .services .title{
-    font-size:24px;
-    font-weight: bold;
-    height:100px;
-    line-height:100px;
-    text-align: center;
-    color:#2a5c26;
-  }
-  .services-img{
-    display: flex;
-    justify-content: space-between;
-  }
-  .card{
-    border:none;
-    display: inline-flex;
-  }
-  .card .card-title{
-    font-size:20px;
-  }
-  .card .card-body {
-    text-align: center;
-    margin-top: 24px;
-    padding:0;
-  }
-  .card .card-img-top{
-    width: 200px;
-    height:200px;
-  }
-  .contact-news{
-    display: flex;
-    justify-content: space-between;
-    margin-top:37px;
-  }
-  .contact {
-    width: 40%;
-    margin-right: 10%
-  }
-  .news {
-    width: 50%;
-  }
-  .contact-news .title{
-    display: flex;
-    align-items: center;
-    color: #41903B;
-  }
-  .contact-news .title .title-wrap{
-    width: 8px;
-    height:22px;
-    background: #41903B;
-    margin-right:10px;
-  }
-  .contact-news .title .title-text{
-    font-size: 24px;
-    font-weight: 600;
-  }
-  .contact-news .content{
-    margin-top:20px;
-  }
-  .cursor{
-    cursor: pointer;
-  }
-  .contact-news .content .item-wrap{
-    line-height:30px;
-    display: flex;
-    align-items: flex-start;
-    font-size: 21px;
-    margin-bottom: 10px;
-  }
-  .contact-news .content .item-wrap .text{
-    display: inline-block;
-    width: 110px;
-    text-align: justify;
-    height: 36px;
-    line-height: 36px;
-    color:#000;
-  }
-  .contact-news .content .item-wrap .text:after{
+  .carousel-indicators li::before{
+    position: absolute;
+    top: -10px;
+    left: 0;
     display: inline-block;
     width: 100%;
-    content: '';
+    height: 10px;
+    content: "";
   }
-  .contact-news .content .item-wrap .text-wrap{
-    margin-left:10px;
-    height: 36px;
-    line-height: 36px;
-    color:#666;
+  .carousel-indicators li::after{
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    content: "";
   }
-  .news-title{
+  #carouselExampleIndicators .carousel-fade .carousel-inner .carousel-item,
+  #carouselExampleIndicators .carousel-fade .carousel-inner .active.carousel-item-left,
+  #carouselExampleIndicators .carousel-fade .carousel-inner .active.carousel-item-right{
+   opacity: 0;
+  }
+  #carouselExampleIndicators .carousel-fade .carousel-inner .active,
+  #carouselExampleIndicators .carousel-fade .carousel-inner .carousel-item-next.carousel-item-left,
+  #carouselExampleIndicators .carousel-fade .carousel-inner .carousel-item-prev.carousel-item-right{
+    opacity: 1;
+    transition: 0.5s;
+  }
+  #carouselExampleIndicators .carousel-fade .carousel-inner .carousel-item{
+    -webkit-transition-property: opacity;
+    transition-property: opacity;
+  }
+  .carousel-indicators li.active{
+    /*width:25px;*/
+    /*background-color: #41903B;*/
+  }
+  #advance, #company, #project{
+    background: url(../images/img_mapbg.png) center top no-repeat fixed;
+    background-size: cover;
+    padding: 60px 0 40px 0;
+    position: relative;
+  }
+  .center{
+    text-align: center;
+  }
+  #advance .content, #contact{
+    background-image: url("../images/advantages.png");
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  #contact {
+    background-image: url("../images/img_contact_bg.png");
+    height:315px;
+    position: relative;
+  }
+  #contact .contact_us {
+    height: 60px;
+    /*border: 1px solid red;*/
+    /*width: 200px;*/
+    position: absolute;
+    top: 60%;
+    left: 17%;
+  }
+  #contact .contact_us .phone {
     display: flex;
-    justify-content: space-between;
-  }
-  .more a{
-    font-size:18px;
-    color:#999
-  }
-  .contact-news .news .content .item-wrap{
     align-items: center;
-    line-height: 37px;
+    margin-bottom: 10px;
   }
-  .contact-news .news .content .item-wrap .news-icon{
-    width: 12px;
-    height: 12px;
-    background: #41903B;
-    margin-right:10px;
+  #contact .contact_us .phone img {
+    width: 18px;
+    height:18px;
   }
-  .contact-news .news .content .item-wrap .news-text{
+  #contact .contact_us .text{
+    color:#fff;
+    margin-left:10px;
+  }
+  #company .content{
     display: flex;
     justify-content: space-between;
-    width: 95%;
+    padding:16px;
   }
-  .contact-news .news .content .item-wrap .news-text .new-title{
-    width: 56%;
+  #company .content .img{
+    width:33%;
+    margin-right: 20px;
+    /*height:80vh;*/
   }
-  .ellipsis { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; letter-spacing:1px; }
+  #company .content .introduce{
+    width: 30%;
+  }
+  #company .content .img img {
+    width:100%;
+    height:100%;
+  }
+  #company .content .introduce p {
+    text-indent: 30px;
+  }
+  #project>div.center> span{
+    display: inline-block;
+    width: 270px;
+    height:80px;
+  }
+  #project>div.center> span.case{
+    background-image: url("../images/button_caseproduce_n.png");
+    margin-right:160px;
+  }
+  #project>div.center> span.case.active{
+    background-image: url("../images/button_caseproduce_h.png");
+  }
+  #project>div.center> span.project{
+    background-image: url("../images/button_itemproduce_n.png");
+  }
+  #project>div.center> span.project.active{
+    background-image: url("../images/button_itemproduce_h.png");
+  }
+  .case-project {
+    padding:60px;
+  }
+  .case-project .content{
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-between;*/
+  }
+  .case-project .content>a {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .case-project .content article {
+    margin-right: 3%;
+    position: relative;
+    margin-bottom: 3.5%;
+    width: 30%;
+  }
+  .post-format-content {
+    position: relative;
+    background: #111;
+  }
+  .post-thumbnail {
+    /*max-width: 100%;*/
+    height: auto;
+    overflow: hidden;
+  }
+  .content-wrap {
+    padding: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  .content-wrap h1.entry-title {
+    display: table;
+    font-size: 110%;
+    height: 100%;
+    text-transform: uppercase;
+    width: 100%;
+    margin:0;
+  }
+  .edit-link {
+    z-index: 2;
+  }
+  .featured-image {
+    display: table-cell;
+    position: relative;
+    transition: opacity .25s ease-in-out, background .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out, background .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out, background .25s ease-in-out;
+    vertical-align: middle;
+    z-index: 1;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    padding: 10%;
+  }
+  .featured-image:hover {
+    opacity: 0.9;
+    color: #fff;
+    background: rgba(0,0,0,0.8);
+  }
+  .post-thumbnail{
+    /*width:300px;*/
+    width:100%;
+    height:200px;
+  }
+  .post-thumbnail img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
 </style>

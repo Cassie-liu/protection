@@ -1,8 +1,8 @@
 <template>
   <div class="layout">
-    <div class="header container">
-      <img src="../images/logo.png" alt="">
-    </div>
+    <!--<div class="header container">-->
+      <!--<img src="../images/logo.png" alt="">-->
+    <!--</div>-->
     <div class="content">
       <NavBar></NavBar>
       <Content></Content>
@@ -52,8 +52,8 @@ export default {
   /*overflow-y: auto;*/
 }
   .footer{
-    height:230px;
+    height:120px;
     display:-webkit-box;
-    margin-top:75px;
+    /*margin-top:75px;*/
   }
 </style>

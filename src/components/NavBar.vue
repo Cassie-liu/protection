@@ -1,6 +1,9 @@
 <template>
   <div class="navBar">
-    <div class="container">
+    <div class="top-nav">
+      <div class="logo">
+        <img src="../images/logo.png" alt="">
+      </div>
      <ul class="nav-tab">
       <li :class="{'active': tab == 'index'}" @click="switchTab('index')">
        <router-link :to="{name: 'Home'}">首页</router-link>
@@ -67,36 +70,51 @@ export default {
 </script>
 
 <style scoped>
-.navBar{
+.navBar .top-nav{
   width: 100%;
-  background: #41903b;
-  height:60px;
+  /*background: #41903b;*/
+  height:90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navBar .top-nav img{
+  width:179px;
+  height:69px;
+  margin-left:40px;
 }
 .nav-tab{
+  width: 80%;
   list-style: none;
   color:#fff;
   font-size:21px;
   height:60px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
 .nav-tab li {
-  width: 200px;
-  height:60px;
-  line-height:60px;
   text-align: center;
+  width:98px;
+  height:38px;
+  line-height:38px;
+  border-radius:19px;
 }
 .nav-tab li a {
-  color: #fff;
+  color: #333;
   text-decoration: none;
   height: 100%;
   display: inline-block;
   width: 100%;
+  font-size:16px;
 }
 .nav-tab li:hover{
   cursor: pointer;
 }
 .nav-tab li.active{
-  background: #2a5c26;
+  background:rgba(74,179,68,1);
 }
+  .nav-tab li.active a {
+    color: #FFFFFF;
+  }
 </style>

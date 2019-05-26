@@ -1,23 +1,5 @@
 <template>
 <div class="content-wrap">
-  <!--<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">-->
-    <!--<ol class="carousel-indicators">-->
-      <!--<li data-target="#carouselExampleIndicators" v-for="(item, index) in images" :key="index" :data-slide-to="index" :class="active == index ? 'active': ''"></li>-->
-    <!--</ol>-->
-    <!--<div class="carousel-inner">-->
-      <!--<div class="carousel-item" v-for="(item, index) in images" :key="index" :class="active == index ? 'active': ''">-->
-        <!--<img class="d-block w-100" :src="item">-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">-->
-      <!--<img src="../images/button_left.png" alt="">-->
-      <!--<span class="sr-only">Previous</span>-->
-    <!--</a>-->
-    <!--<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">-->
-      <!--<img src="../images/button_right.png" alt="">-->
-      <!--<span class="sr-only">Next</span>-->
-    <!--</a>-->
-  <!--</div>-->
   <router-view></router-view>
 </div>
 </template>
