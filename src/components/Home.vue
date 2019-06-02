@@ -7,8 +7,8 @@
             <li data-target="#carouselExampleIndicators" v-for="(item, index) in images" :key="index" :data-slide-to="index" :class="active == index ? 'active': ''"></li>
           </ol>
           <div class="carousel-inner">
-            <div class="carousel-item" v-for="(item, index) in images" :key="index" :class="active == index ? 'active': ''" :style="{backgroundImage: 'url(' + item + ')'}">
-              <!--<img class="d-block w-100" :src="item">-->
+            <div class="carousel-item" v-for="(item, index) in images" :key="index" :class="active == index ? 'active': ''" >
+              <img :src="item">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -29,7 +29,9 @@
         <div class="title center">
           <img src="../images/advantage.png" alt="">
         </div>
-        <div class="content"></div>
+        <div class="content">
+          <img src="../images/advantages.png" alt="">
+        </div>
       </section>
       <section id="company">
         <div class="title center">
@@ -187,6 +189,12 @@ export default {
 </script>
 
 <style scoped>
+  #intro{
+    height:70vh;
+  }
+  .intro-container,.carousel,.carousel-inner{
+    height:100%;
+  }
   .carousel-inner img{
     height: 450px;
   }
@@ -209,12 +217,18 @@ export default {
   }
   #carouselExampleIndicators .carousel-item {
     width: 100%;
-    height: -moz-calc(100vh - 90px);
-    height: -webkit-calc(100vh - 90px);
-    height: calc(100vh - 90px);
+    /*height: -moz-calc(90vh - 90px);*/
+    /*height: -webkit-calc(90vh - 90px);*/
+    /*height: calc(90vh - 90px);*/
+    /*height:90%;*/
+    height:100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+  #carouselExampleIndicators .carousel-item img{
+    width: 100%;
+    height:100%;
   }
   .carousel-indicators li{
     /*width:20px;*/
@@ -258,6 +272,9 @@ export default {
     -webkit-transition-property: opacity;
     transition-property: opacity;
   }
+  .carousel-indicators{
+    /*bottom: 70px;*/
+  }
   .carousel-indicators li.active{
     /*width:25px;*/
     /*background-color: #41903B;*/
@@ -265,13 +282,24 @@ export default {
   #advance, #company, #project{
     background: url(../images/img_mapbg.png) center top no-repeat fixed;
     background-size: cover;
-    padding: 60px 0 40px 0;
+    /*padding: 60px 0 40px 0;*/
     position: relative;
+    /*margin-top: 30px;*/
+  }
+  #project{
+    margin-top:30px;
   }
   .center{
     text-align: center;
   }
-  #advance .content, #contact{
+  #advance .title img, #company .title img{
+    height:100px;
+  }
+  #advance .content img{
+    width: 100%;
+    height:70vh
+  }
+ #contact{
     background-image: url("../images/advantages.png");
     width: 100%;
     height: 100vh;
@@ -305,10 +333,12 @@ export default {
     color:#fff;
     margin-left:10px;
   }
+
   #company .content{
     display: flex;
     justify-content: space-between;
-    padding:16px;
+    padding: 0 16px;
+    margin-bottom: 20px;
   }
   #company .content .img{
     width:33%;
@@ -333,18 +363,27 @@ export default {
   #project>div.center> span.case{
     background-image: url("../images/button_caseproduce_n.png");
     margin-right:160px;
+    background-size: 80%;
+    background-repeat: no-repeat;
   }
   #project>div.center> span.case.active{
     background-image: url("../images/button_caseproduce_h.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
   }
   #project>div.center> span.project{
     background-image: url("../images/button_itemproduce_n.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
   }
   #project>div.center> span.project.active{
     background-image: url("../images/button_itemproduce_h.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
   }
   .case-project {
-    padding:60px;
+    /*padding:60px;*/
+    padding: 10px 60px;
   }
   .case-project .content{
     /*display: flex;*/
@@ -355,6 +394,7 @@ export default {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-left: 2%;
   }
   .case-project .content article {
     margin-right: 3%;
