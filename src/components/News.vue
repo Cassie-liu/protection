@@ -2,10 +2,10 @@
 <div class="container">
   <div class="item-wrap" v-for="(item, index) in news" :key="index" @click="$router.push('/news/' + item.id)">
     <div class="title"><a>{{item.title}}</a></div>
-    <div class="time">{{item.time}}</div>
+    <div class="time">{{item.times}}</div>
   </div>
   <div class="pages mt-3">
-    <b-pagination  v-model="params.page" :total-rows="totalCount" align="right" :per-page="params.size" @change="query"></b-pagination>
+    <b-pagination  v-model="params.page" v-if="totalCount > 0" :total-rows="totalCount" align="right" :per-page="params.size" @change="query"></b-pagination>
   </div>
 </div>
 </template>
@@ -48,6 +48,21 @@ export default {
       }
       this.news = this.allNews.slice((this.params.page - 1) * 10, this.params.page * 10)
     }
+  },
+  watch: {
+    news: {
+      handler (culVal, oldVal) {
+        if (document.body.clientWidth <= 768) {
+          for (let i in this.news) {
+            this.news[i].times = this.news[i].time.split(' ')[0]
+          }
+        } else {
+          for (let i in this.news) {
+            this.news[i].times = this.news[i].time
+          }
+        }
+      }
+    }
   }
 }
 </script>
@@ -62,7 +77,19 @@ export default {
   line-height: 30px;
   cursor: pointer;
 }
+@media screen and (max-device-width: 768px) {
+  .item-wrap{
+    border-bottom: 1px solid #ddd;
+  }
+  .item-wrap .title {
+    width: 74%;
+  }
+  .item-wrap .time {
+    width: 30%;
+    margin-left:2%;
+  }
   .pages.mt-3{
     margin-top: 3rem !important;
   }
+}
 </style>

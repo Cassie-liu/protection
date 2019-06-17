@@ -17,6 +17,7 @@
               <router-link :to="{path: '/case/' + item.id}" class="featured-image" rel="bookmark">{{item.title}}</router-link>
             </h1>
           </div>
+          <div class="title">{{item.title}}</div>
         </div>
       </article>
     </div>
@@ -88,6 +89,9 @@ export default {
     position: relative;
     background: #111;
   }
+  .post-format-content .title {
+    display: none;
+  }
   .post-thumbnail {
     /*max-width: 100%;*/
     height: auto;
@@ -142,5 +146,25 @@ export default {
     display: block;
     width: 100%;
     height: 100%;
+  }
+  @media screen and (max-device-width: 768px) {
+    .case-project{
+      padding: 20px;
+    }
+    .case-project .content article {
+      width: 100%;
+      border-bottom:1px solid #ddd;
+    }
+    .case-project .content article .post-format-content{
+      background: #fff;
+    }
+    .case-project .content article .post-thumbnail img{
+      border-radius: 10px;
+    }
+    .case-project .content article .post-format-content .title {
+      display: block;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
   }
 </style>

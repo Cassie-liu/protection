@@ -33,4 +33,9 @@ export default {
 .company{
   padding: 20px;
 }
+  @media screen and (max-device-width: 768px) {
+    .company .content img {
+      width: 100% !important;
+    }
+  }
 </style>

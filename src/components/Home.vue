@@ -38,11 +38,14 @@
           <img src="../images/company_intro.png" alt="">
         </div>
         <div class="content">
-          <div class="img img1">
-            <img src="../images/company1.jpg" alt="">
-          </div>
-          <div class="img img2">
-            <img src="../images/company2.jpg" alt="">
+          <!--<div class="img img1">-->
+            <!--<img src="../images/company1.jpg" alt="">-->
+          <!--</div>-->
+          <!--<div class="img img2">-->
+            <!--<img src="../images/company2.jpg" alt="">-->
+          <!--</div>-->
+          <div class="img">
+            <img src="../images/company3.jpg" alt="">
           </div>
           <div class="img introduce">
             <div class="">
@@ -61,26 +64,8 @@
       </section>
       <section id="project">
         <div class="center">
-          <span class="case" :class="tab === 'case' ? 'active': ''" @click="switchTab('case')"></span>
           <span class="project" :class="tab === 'project' ? 'active': ''" @click="switchTab('project')"></span>
-        </div>
-        <div class="case-project" v-if="tab === 'case'">
-          <div class="content">
-           <router-link :to="{name: 'Case'}">
-             <article v-for="(item, index) in cases" :key="index"  class="post-152 post type-post status-publish format-standard hentry category-people category-photos">
-               <div class="post-format-content">
-                 <div class="post-thumbnail">
-                   <img width="480" height="640" :src="item.imageUrl" class="attachment-thumbnail wp-post-image" alt="105694702">
-                 </div>
-                 <div class="content-wrap">
-                   <h1 class="entry-title">
-                     <a href="" class="featured-image" rel="bookmark">{{item.title}}</a>
-                   </h1>
-                 </div>
-               </div>
-             </article>
-           </router-link>
-          </div>
+          <span class="case" :class="tab === 'case' ? 'active': ''" @click="switchTab('case')"></span>
         </div>
         <div class="case-project" v-if="tab === 'project'">
           <div class="content">
@@ -98,6 +83,24 @@
                 </div>
               </article>
             </router-link>
+          </div>
+        </div>
+        <div class="case-project" v-if="tab === 'case'">
+          <div class="content">
+           <router-link :to="{name: 'Case'}">
+             <article v-for="(item, index) in cases" :key="index"  class="post-152 post type-post status-publish format-standard hentry category-people category-photos">
+               <div class="post-format-content">
+                 <div class="post-thumbnail">
+                   <img width="480" height="640" :src="item.imageUrl" class="attachment-thumbnail wp-post-image" alt="105694702">
+                 </div>
+                 <div class="content-wrap">
+                   <h1 class="entry-title">
+                     <a href="" class="featured-image" rel="bookmark">{{item.title}}</a>
+                   </h1>
+                 </div>
+               </div>
+             </article>
+           </router-link>
           </div>
         </div>
       </section>
@@ -133,7 +136,7 @@ export default {
       news: [], // 新闻资讯
       projects: [], // 项目
       cases: [], // 工程,
-      tab: 'case'
+      tab: 'project'
     }
   },
   mounted () {
@@ -341,12 +344,15 @@ export default {
     margin-bottom: 20px;
   }
   #company .content .img{
-    width:33%;
+    /*width:33%;*/
+    width: 50%;
     margin-right: 20px;
     /*height:80vh;*/
   }
   #company .content .introduce{
-    width: 30%;
+    /*width: 30%;*/
+    width: 50%;
+    font-size:18px;
   }
   #company .content .img img {
     width:100%;
@@ -354,6 +360,7 @@ export default {
   }
   #company .content .introduce p {
     text-indent: 30px;
+    line-height:32px;
   }
   #project>div.center> span{
     display: inline-block;
@@ -362,7 +369,7 @@ export default {
   }
   #project>div.center> span.case{
     background-image: url("../images/button_caseproduce_n.png");
-    margin-right:160px;
+    /*margin-right:160px;*/
     background-size: 80%;
     background-repeat: no-repeat;
   }
@@ -373,6 +380,7 @@ export default {
   }
   #project>div.center> span.project{
     background-image: url("../images/button_itemproduce_n.png");
+    margin-right:160px;
     background-size: 80%;
     background-repeat: no-repeat;
   }

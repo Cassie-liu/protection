@@ -32,6 +32,24 @@
         </div>
       </div>
     </div>
+    <div class="info">
+      <div class="item-info">
+        <label>电话</label>
+        <span>{{contact.hotline}}</span>
+      </div>
+      <div class="item-info">
+        <label>传真</label>
+        <span>{{contact.fax}}</span>
+      </div>
+      <div class="item-info">
+        <label>邮箱</label>
+        <span>{{contact.email}}</span>
+      </div>
+      <div class="item-info">
+        <label>地址</label>
+        <span>{{contact.address}}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -120,5 +138,32 @@ export default {
     height: 36px;
     line-height: 36px;
     color:#666;
+  }
+  .container .info{
+    display: none;
+  }
+  .container  .info .item-info{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+  }
+  .container  .info .item-info label{
+    margin-bottom: 0;
+  }
+  @media screen  and (max-device-width: 768px){
+   .contact .maps {
+      width: 100% !important;
+      margin-right:0;
+     height:300px;
+    }
+    .right{
+      display: none;
+    }
+    .container .info{
+      display: block;
+    }
   }
 </style>

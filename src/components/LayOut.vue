@@ -5,6 +5,7 @@
     <!--</div>-->
     <div class="content">
       <NavBar></NavBar>
+      <div class="top_header">{{title}}</div>
       <Content></Content>
     </div>
     <div class="footer">
@@ -20,12 +21,39 @@ import Footer from './Footer'
 export default {
   name: 'LayOut',
   data () {
-    return {}
+    return {
+      title: ''
+    }
   },
   components: {
     NavBar,
     Content,
     Footer
+  },
+  mounted () {
+    this.initTitle()
+  },
+  methods: {
+    initTitle () {
+      if (this.$route.path.indexOf('/company') > -1) {
+        this.title = '公司介绍'
+      } else if (this.$route.path.indexOf('/news') > -1) {
+        this.title = '新闻资讯'
+      } else if (this.$route.path.indexOf('/project') > -1) {
+        this.title = '项目介绍'
+      } else if (this.$route.path.indexOf('/case') > -1) {
+        this.title = '工程案例'
+      } else if (this.$route.path.indexOf('/contact') > -1) {
+        this.title = '联系我们'
+      }
+    }
+  },
+  watch: {
+    '$route': {
+      handler (to, from) {
+        this.initTitle()
+      }
+    }
   }
 }
 </script>
@@ -55,5 +83,24 @@ export default {
     height:120px;
     display:-webkit-box;
     /*margin-top:75px;*/
+  }
+  .top_header{
+    height:50px;
+    background: #4AB344;
+    color:#fff;
+    font-family: KaiTi;
+    font-size:1.5rem;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+    display: none;
+  }
+  @media only screen and (max-device-width: 768px) {
+   .layout .navBar, .layout .footer{
+      display: none;
+    }
+    .layout .top_header {
+      display: flex;
+    }
   }
 </style>

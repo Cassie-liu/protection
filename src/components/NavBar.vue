@@ -1,5 +1,9 @@
 <template>
   <div class="navBar">
+    <div class="company-content">
+      <span>常州环泰环保科技有限公司</span>
+      <span>咨询电话：0519-88299177</span>
+    </div>
     <div class="top-nav">
       <div class="logo">
         <img src="../images/logo.png" alt="">
@@ -70,6 +74,17 @@ export default {
 </script>
 
 <style scoped>
+  .company-content{
+    display: flex;
+    height: 30px;
+    align-items: center;
+    background: #003221;
+    color: #fff;
+  }
+  .company-content span{
+    margin-left:40px;
+    font-family: KaiTi;
+  }
 .navBar .top-nav{
   width: 100%;
   /*background: #41903b;*/
