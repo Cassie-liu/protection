@@ -23,6 +23,27 @@
           </a>
         </div>
       </div>
+      <div class="side-menu">
+        <div class="side-header">
+          服务项目
+        </div>
+        <div class="side-content">
+          <ul class="content-project">
+            <li v-for="(item, index) in project" :key="index">
+              <router-link :to="{path: '/project/' + item.id}">{{item.title}}</router-link>
+            </li>
+            <li v-if="projects.length > 4">
+              <router-link :to="{path: '/project'}">查看更多</router-link>
+            </li>
+          </ul>
+        </div>
+        <div class="side-footer">
+          <div class="footer-title">关注微信公众号</div>
+          <div>
+            <img src="../images/QR_code.jpg" alt="">
+          </div>
+        </div>
+      </div>
     </section>
     <main id="main">
       <section id="advance">
@@ -136,6 +157,7 @@ export default {
       news: [], // 新闻资讯
       projects: [], // 项目
       cases: [], // 工程,
+      project: [], // 四个项目
       tab: 'project'
     }
   },
@@ -175,6 +197,9 @@ export default {
       BaseService.getProjectInfo()
         .then(res => {
           this.projects = res.data.data
+          if (this.projects.length >= 4) {
+            this.project = this.projects.slice(0, 4)
+          }
         })
     },
     getCaseInfo () {
@@ -194,6 +219,7 @@ export default {
 <style scoped>
   #intro{
     height:70vh;
+    position: relative;
   }
   .intro-container,.carousel,.carousel-inner{
     height:100%;
@@ -281,6 +307,73 @@ export default {
   .carousel-indicators li.active{
     /*width:25px;*/
     /*background-color: #41903B;*/
+  }
+   #intro .side-menu {
+     position: fixed;
+     top: 120px;
+     z-index: 1000;
+     border: 1px solid #333;
+     /*height: 80vh;*/
+     width: 200px;
+     background: #fff;
+   }
+   #intro .side-menu .side-header{
+     width: 100%;
+     height: 60px;
+     text-align: center;
+     line-height: 60px;
+     background: #003221;
+     color: #fff;
+     font-size: 18px;
+   }
+  #intro .side-menu .side-content{
+    /*min-height: 40vh;*/
+  }
+  #intro .side-menu .side-content .content-project{
+    padding: 10px 0;
+    padding-bottom: 0;
+  }
+  #intro .side-menu .side-content .content-project li {
+    list-style: none;
+    width: 100%;
+    height: 40px;
+    line-height:40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    text-overflow:ellipsis;/*设置超出部分显示...*/
+    -o-text-overflow:ellipsis;
+    overflow: hidden;
+    padding: 0 10px;
+  }
+  #intro .side-menu .side-content .content-project li a {
+    width: 150px;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  #intro .side-menu .side-content .content-project li a,#intro .side-menu .side-content .content-project li a:hover{
+    text-decoration: none;
+    color: #333;
+  }
+  #intro .side-menu .side-footer{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    /*height: 160px;*/
+  }
+  #intro .side-menu .side-footer img{
+    width: 180px;
+  }
+  #intro .side-menu .side-footer .footer-title{
+    height: 60px;
+    background: #003221;
+    width: 100%;
+    line-height: 60px;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
   }
   #advance, #company, #project{
     background: url(../images/img_mapbg.png) center top no-repeat fixed;
